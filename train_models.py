@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import pandas as pd
 import numpy as np
-from src.data_generation import generate_synthetic_dataset
+from src.kaggle_data_loader import load_kaggle_dataset
 from src.preprocessing import preprocess_data
 from src.models import train_multiple_models
 from src.evaluation import (plot_confusion_matrix, plot_roc_curve, 
@@ -27,16 +27,18 @@ def train_and_evaluate(target='returned', save_models=True):
     print(f"Training Models for {target.upper()} Prediction")
     print("="*80)
     
-    # Load or generate dataset
-    data_path = 'data/raw/ecommerce_orders.csv'
-    if os.path.exists(data_path):
-        print(f"\nLoading dataset from {data_path}...")
-        df = pd.read_csv(data_path)
-    else:
-        print("\nDataset not found. Generating new dataset...")
-        df = generate_synthetic_dataset(n_samples=10000, random_seed=42)
-        os.makedirs('data/raw', exist_ok=True)
-        df.to_csv(data_path, index=False)
+    # Load Kaggle dataset
+    kaggle_path = 'data/raw/ecommerce_returns_kaggle.csv'
+    
+    if not os.path.exists(kaggle_path):
+        print(f"\nERROR: Kaggle dataset not found at {kaggle_path}")
+        print("Please download the dataset from:")
+        print("https://www.kaggle.com/datasets/...")
+        return None
+    
+    print(f"\nLoading Kaggle dataset from {kaggle_path}...")
+    df = load_kaggle_dataset(kaggle_path)
+    print("Using Kaggle e-commerce returns dataset")
     
     print(f"Dataset loaded: {len(df)} samples")
     

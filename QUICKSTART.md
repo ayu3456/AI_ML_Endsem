@@ -21,17 +21,17 @@ pip install -r requirements.txt
 python3 main.py
 ```
 This will:
-- Generate or load the dataset
+- Load the Kaggle dataset
 - Perform data exploration
 - Train both return and risk prediction models
 - Create visualizations
 - Save trained models
 
-### Option 2: Generate Dataset Only
-```bash
-python3 generate_dataset.py
+### Option 2: Download Dataset
+Download the Kaggle e-commerce returns dataset and place it at:
 ```
-This generates a synthetic dataset with 10,000 samples and saves it to `data/raw/ecommerce_orders.csv`.
+data/raw/ecommerce_returns_kaggle.csv
+```
 
 ### Option 3: Train Models Only
 ```bash
@@ -49,7 +49,7 @@ This provides an interactive environment to explore the data and models.
 
 After running the scripts, you'll find:
 
-- **Dataset**: `data/raw/ecommerce_orders.csv`
+- **Dataset**: `data/raw/ecommerce_returns_kaggle.csv`
 - **Trained Models**: `models/return_predictor.joblib`, `models/risk_predictor.joblib`
 - **Visualizations**: 
   - `models/data_exploration.png`
@@ -60,7 +60,7 @@ After running the scripts, you'll find:
 
 ## Dataset Features
 
-The synthetic dataset includes:
+The Kaggle e-commerce returns dataset includes:
 - **Product Features**: category, price, rating, number of reviews
 - **Customer Features**: age, purchase history, region
 - **Order Features**: quantity, shipping method, payment method, total value

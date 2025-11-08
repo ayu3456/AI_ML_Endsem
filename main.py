@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import pandas as pd
 import numpy as np
-from src.data_generation import generate_synthetic_dataset
+from src.kaggle_data_loader import load_kaggle_dataset
 from src.preprocessing import preprocess_data
 from src.models import RiskReturnPredictor
 import matplotlib.pyplot as plt
@@ -19,20 +19,21 @@ def main():
     print("RISK AND RETURN PREDICTION FOR E-COMMERCE PRODUCTS")
     print("="*80)
     
-    # Step 1: Generate or load dataset
+    # Step 1: Load Kaggle dataset
     print("\n[Step 1] Dataset Preparation")
     print("-" * 80)
-    data_path = 'data/raw/ecommerce_orders.csv'
     
-    if os.path.exists(data_path):
-        print(f"Loading dataset from {data_path}...")
-        df = pd.read_csv(data_path)
-    else:
-        print("Generating synthetic dataset...")
-        os.makedirs('data/raw', exist_ok=True)
-        df = generate_synthetic_dataset(n_samples=10000, random_seed=42)
-        df.to_csv(data_path, index=False)
-        print(f"Dataset saved to {data_path}")
+    kaggle_path = 'data/raw/ecommerce_returns_kaggle.csv'
+    
+    if not os.path.exists(kaggle_path):
+        print(f"ERROR: Kaggle dataset not found at {kaggle_path}")
+        print("Please download the dataset from:")
+        print("https://www.kaggle.com/datasets/...")
+        return
+    
+    print(f"Loading Kaggle dataset from {kaggle_path}...")
+    df = load_kaggle_dataset(kaggle_path)
+    print("Using Kaggle e-commerce returns dataset")
     
     print(f"Dataset shape: {df.shape}")
     print(f"Return rate: {df['returned'].mean():.2%}")

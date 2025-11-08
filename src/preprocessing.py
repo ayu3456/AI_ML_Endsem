@@ -22,8 +22,10 @@ def preprocess_data(df, target='returned', test_size=0.2, random_state=42):
     # Create a copy to avoid modifying original
     df = df.copy()
     
-    # Drop unnecessary columns
-    df = df.drop(['order_id', 'days_to_return'], axis=1, errors='ignore')
+    # Drop unnecessary columns and columns that cause data leakage
+    # return_reason and Days_to_Return are only known AFTER return happens
+    df = df.drop(['order_id', 'days_to_return', 'Days_to_Return', 
+                  'return_reason', 'product_id', 'user_id'], axis=1, errors='ignore')
     
     # Separate features and target
     if target == 'returned':
