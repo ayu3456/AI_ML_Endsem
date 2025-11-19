@@ -14,6 +14,13 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## Step-1 Download the Dataset (Required)
+Download the Kaggle e-commerce returns dataset and place it here:
+```bash
+data/raw/ecommerce_returns_kaggle.csv
+```
+ 
+
 ## Running the Project
 
 ### Option 1: Run the Complete Pipeline
@@ -27,19 +34,13 @@ This will:
 - Create visualizations
 - Save trained models
 
-### Option 2: Download Dataset
-Download the Kaggle e-commerce returns dataset and place it at:
-```
-data/raw/ecommerce_returns_kaggle.csv
-```
-
-### Option 3: Train Models Only
+### Option 2: Train Models Only
 ```bash
 python3 train_models.py
 ```
 This trains multiple models (Random Forest, XGBoost, Logistic Regression) for both return and risk prediction, and creates detailed evaluation visualizations.
 
-### Option 4: Use Jupyter Notebook
+### Option 3: Use Jupyter Notebook
 ```bash
 jupyter notebook notebooks/main_analysis.ipynb
 ```
