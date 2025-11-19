@@ -87,3 +87,8 @@ Models are evaluated using:
 3. Explore the results in the `models/` directory
 4. Use the Jupyter notebook for interactive analysis
 
+
+
+## NOTE:
+We used the above dataset for testing out things till the mid-term because this data set was small and the proposal one was very big for testing out different things, we will be using the dataset which we mentioned in the proposal in the further evaluation 
+
